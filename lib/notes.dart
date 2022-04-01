@@ -40,8 +40,7 @@ class _NotesState extends State<Notes> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            margin:
-                                EdgeInsets.only(top: 30, left: 60, bottom: 10),
+                            margin: EdgeInsets.only(left: 60, bottom: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -67,9 +66,10 @@ class _NotesState extends State<Notes> {
                               ),
                               Expanded(
                                 child: TextButton(
-                                  child: const Text(
-                                    'ADD NOTE ',
-                                  ),
+                                  child: const Text('ADD NOTE',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                      )),
                                   onPressed: () {
                                     showDialog<String>(
                                         context: context,
@@ -80,9 +80,10 @@ class _NotesState extends State<Notes> {
                               ),
                               Expanded(
                                 child: TextButton(
-                                  child: const Text(
-                                    'SEARCH NOTE',
-                                  ),
+                                  child: const Text('SEARCH NOTE',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                      )),
                                   onPressed: () {/* ... */},
                                 ),
                               ),

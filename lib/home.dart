@@ -10,7 +10,34 @@ class Home extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Notes(),
+        body: NestedScrollView(
+          floatHeaderSlivers: true,
+          headerSliverBuilder: (context, innerBoxIsScrolled) => [
+            SliverAppBar(
+              toolbarHeight: 40,
+              backgroundColor:
+                  // innerBoxIsScrolled == true ? Colors.green[300] : Colors.white
+                  // ,
+                  Colors.white,
+              elevation: 1,
+              snap: true,
+              centerTitle: true,
+              floating: true,
+              forceElevated: innerBoxIsScrolled,
+              title: innerBoxIsScrolled == true
+                  ? Text(
+                      "TODO LIST",
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    )
+                  : Text(""),
+            )
+          ],
+          body: Notes(),
+        ),
         bottomNavigationBar: BottomAppBar(
           clipBehavior: Clip.antiAlias,
           shape: new CircularNotchedRectangle(),
