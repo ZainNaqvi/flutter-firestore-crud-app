@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crudfirebase/editnote.dart';
 import 'package:flutter/material.dart';
 
 class Notes extends StatefulWidget {
@@ -118,7 +119,15 @@ class _NotesState extends State<Notes> {
                             Expanded(
                               child: TextButton(
                                 child: Icon(Icons.edit),
-                                onPressed: () {/* ... */},
+                                onPressed: () {
+                                  Navigator.push<void>(
+                                    context,
+                                    MaterialPageRoute<void>(
+                                      builder: (BuildContext context) =>
+                                          UpdateStudentPage(id: list[i]['id']),
+                                    ),
+                                  );
+                                },
                               ),
                             ),
                             Expanded(
