@@ -1,4 +1,3 @@
-import 'package:crudfirebase/dialogbox.dart';
 import 'package:crudfirebase/notes.dart';
 import 'package:flutter/material.dart';
 
@@ -50,10 +49,7 @@ class Home extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            showDialog<String>(
-                context: context,
-                builder: (BuildContext context) =>
-                    DialogBox.alertDialog(context));
+            Navigator.pushNamed(context, '/addnote');
           },
           child: Icon(Icons.add),
         ),

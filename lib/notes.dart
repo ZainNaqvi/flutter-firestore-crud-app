@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:crudfirebase/dialogbox.dart';
 import 'package:flutter/material.dart';
 
 class Notes extends StatefulWidget {
@@ -10,6 +9,19 @@ class Notes extends StatefulWidget {
 }
 
 class _NotesState extends State<Notes> {
+  // creating the instance
+  CollectionReference note = FirebaseFirestore.instance.collection('notes');
+  // creating the delete function here...
+  Future<void> deleteUser(noteId) async {
+    return note.doc(noteId).delete().then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('The note is deleted successfully from the databse.'),
+        ),
+      );
+    }).catchError((error) => print("Failed to delete user: $error"));
+  }
+
   final Stream<QuerySnapshot> _usersStream =
       FirebaseFirestore.instance.collection('notes').snapshots();
   @override
@@ -27,7 +39,7 @@ class _NotesState extends State<Notes> {
           snapshot.data!.docs.map((DocumentSnapshot document) {
             Map notes = document.data()! as Map<String, dynamic>;
             list.add(notes);
-            print(list);
+            notes['id'] = document.id;
           }).toList();
           return SingleChildScrollView(
             child: Center(
@@ -71,10 +83,7 @@ class _NotesState extends State<Notes> {
                                         fontSize: 15,
                                       )),
                                   onPressed: () {
-                                    showDialog<String>(
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            DialogBox.alertDialog(context));
+                                    Navigator.pushNamed(context, '/addnote');
                                   },
                                 ),
                               ),
@@ -116,7 +125,7 @@ class _NotesState extends State<Notes> {
                               child: TextButton(
                                 child:
                                     Icon(Icons.delete, color: Colors.red[200]),
-                                onPressed: () {/* ... */},
+                                onPressed: () => deleteUser(list[i]['id']),
                               ),
                             ),
                           ],
