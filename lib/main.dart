@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
+    // await Firebase.initializeApp();
     await Firebase.initializeApp(
         options: FirebaseOptions(
             apiKey: ' AIzaSyAAqJ6RIUNVvuYxhmu4jsjB0DBaA5eGN7Y',
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             return MaterialApp(
               title: 'Flutter Demo',
               theme: ThemeData(
-                primarySwatch: Colors.teal,
+                primarySwatch: Colors.blueGrey,
               ),
               // home: const Home(),
               initialRoute: '/',

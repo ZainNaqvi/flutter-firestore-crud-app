@@ -8,26 +8,25 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[50],
         body: NestedScrollView(
           floatHeaderSlivers: true,
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
-              toolbarHeight: 40,
-              backgroundColor:
-                  // innerBoxIsScrolled == true ? Colors.green[300] : Colors.white
-                  // ,
-                  Colors.white,
-              elevation: 1,
+              toolbarHeight: 60,
+              backgroundColor: innerBoxIsScrolled == true
+                  ? Colors.blueGrey[500]
+                  : Colors.grey[50],
+              elevation: 5,
               snap: true,
               centerTitle: true,
               floating: true,
               forceElevated: innerBoxIsScrolled,
               title: innerBoxIsScrolled == true
                   ? Text(
-                      "TODO LIST",
+                      "FLUTTER FIRESTORE",
                       style: TextStyle(
-                        color: Colors.green,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
@@ -37,16 +36,6 @@ class Home extends StatelessWidget {
           ],
           body: Notes(),
         ),
-        bottomNavigationBar: BottomAppBar(
-          clipBehavior: Clip.antiAlias,
-          shape: new CircularNotchedRectangle(),
-          notchMargin: 5.0,
-          child: Container(
-            height: 50.0,
-            color: Colors.green[300],
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, '/addnote');

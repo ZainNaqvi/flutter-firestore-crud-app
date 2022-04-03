@@ -58,10 +58,10 @@ class _NotesState extends State<Notes> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "FIRESTORE",
+                                  "TODO'S APP",
                                   style: TextStyle(
-                                      fontSize: 30,
-                                      color: Colors.green[300],
+                                      fontSize: 50,
+                                      color: Colors.teal,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
@@ -79,10 +79,7 @@ class _NotesState extends State<Notes> {
                               ),
                               Expanded(
                                 child: TextButton(
-                                  child: const Text('ADD NOTE',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                      )),
+                                  child: Icon(Icons.note_add, size: 40),
                                   onPressed: () {
                                     Navigator.pushNamed(context, '/addnote');
                                   },
@@ -90,10 +87,11 @@ class _NotesState extends State<Notes> {
                               ),
                               Expanded(
                                 child: TextButton(
-                                  child: const Text('SEARCH NOTE',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                      )),
+                                  child: Icon(
+                                    Icons.favorite_outline,
+                                    size: 40,
+                                    color: Colors.green[500],
+                                  ),
                                   onPressed: () {/* ... */},
                                 ),
                               ),
@@ -104,18 +102,52 @@ class _NotesState extends State<Notes> {
                       ),
                     ),
                   ),
-
+                  Container(
+                    padding: EdgeInsets.only(left: 40),
+                    margin: EdgeInsets.only(top: 40, bottom: 10),
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "TODO'S LIST 🖍",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[400]),
+                    ),
+                  ),
                   // read data from the database here...
                   for (var i = 0; i < list.length; i++) ...[
                     Card(
+                      color: Colors.blueGrey[600],
+                      borderOnForeground: false,
+                      clipBehavior: Clip.antiAlias,
+                      elevation: 5,
                       child: Column(children: [
                         ListTile(
-                          leading: Icon(Icons.album),
-                          title: Text(list[i]['title']),
-                          subtitle: Text(list[i]['description']),
+                          leading: Icon(
+                            Icons.notes,
+                            color: Colors.grey,
+                          ),
+                          trailing: Text(
+                            "🤍 " + list[i]['tag'].toString().toUpperCase(),
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          title: Text(
+                            list[i]['title'].toString().toUpperCase(),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(
+                            list[i]['description'],
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 252, 252, 252)),
+                          ),
                         ),
                         Row(
                           children: [
+                            SizedBox(
+                              height: 60,
+                            ),
                             Expanded(
                               child: TextButton(
                                 child: Icon(Icons.edit),

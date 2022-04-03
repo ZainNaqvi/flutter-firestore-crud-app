@@ -26,8 +26,12 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
-        title: Text("Update Note"),
+        backgroundColor: Colors.blueGrey,
+        toolbarHeight: 70,
+        centerTitle: true,
+        title: Text("UPDATE NOTE"),
       ),
       body: Form(
           key: _formKey,
@@ -102,7 +106,6 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                         initialValue: tag,
                         autofocus: false,
                         onChanged: (value) => tag = value,
-                        obscureText: true,
                         decoration: InputDecoration(
                           labelText: 'Tag: ',
                           labelStyle: TextStyle(fontSize: 20.0),
@@ -122,27 +125,21 @@ class _UpdateStudentPageState extends State<UpdateStudentPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              // Validate returns true if the form is valid, otherwise false.
-                              if (_formKey.currentState!.validate()) {
-                                updateUser(widget.id, title, description, tag);
-                                Navigator.pop(context);
-                              }
-                            },
-                            child: Text(
-                              'Update',
-                              style: TextStyle(fontSize: 18.0),
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                // Validate returns true if the form is valid, otherwise false.
+                                if (_formKey.currentState!.validate()) {
+                                  updateUser(
+                                      widget.id, title, description, tag);
+                                  Navigator.pop(context);
+                                }
+                              },
+                              child: Text(
+                                'UPDATE',
+                                style: TextStyle(fontSize: 18.0),
+                              ),
                             ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () => {},
-                            child: Text(
-                              'Reset',
-                              style: TextStyle(fontSize: 18.0),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.blueGrey),
                           ),
                         ],
                       ),
