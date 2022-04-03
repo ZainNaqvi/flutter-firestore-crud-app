@@ -10,6 +10,7 @@ class Notes extends StatefulWidget {
 }
 
 class _NotesState extends State<Notes> {
+  bool change = false;
   // creating the instance
   CollectionReference note = FirebaseFirestore.instance.collection('notes');
   // creating the delete function here...
@@ -60,8 +61,8 @@ class _NotesState extends State<Notes> {
                                 Text(
                                   "TODO'S APP",
                                   style: TextStyle(
-                                      fontSize: 50,
-                                      color: Colors.teal,
+                                      fontSize: 55,
+                                      color: Colors.blueGrey,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
@@ -87,12 +88,29 @@ class _NotesState extends State<Notes> {
                               ),
                               Expanded(
                                 child: TextButton(
-                                  child: Icon(
-                                    Icons.favorite_outline,
-                                    size: 40,
-                                    color: Colors.green[500],
-                                  ),
-                                  onPressed: () {/* ... */},
+                                  child: change == false
+                                      ? Icon(
+                                          Icons.favorite_outline,
+                                          size: 40,
+                                          color: Colors.teal[500],
+                                        )
+                                      : Icon(
+                                          Icons.favorite,
+                                          size: 40,
+                                          color: Colors.teal[500],
+                                        ),
+                                  onPressed: () {
+                                    setState(() {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                              'Thank You! For like our App.'),
+                                        ),
+                                      );
+                                      change = true;
+                                    });
+                                  },
                                 ),
                               ),
                               const SizedBox(width: 8),

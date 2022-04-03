@@ -48,13 +48,18 @@ class _AddNoteState extends State<AddNote> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AlertDialog(
-        elevation: 9.0,
+        backgroundColor: Colors.grey[50],
+        elevation: 0,
         title: const Text(
           'ADD NEW NOTE ',
-          style: TextStyle(color: Colors.green),
+          style: TextStyle(
+              color: Colors.blueGrey,
+              fontWeight: FontWeight.bold,
+              fontSize: 40),
         ),
         content: Container(
-          height: 250.0,
+          width: MediaQuery.of(context).size.width,
+          height: 400,
           child: Form(
             key: _formKey,
             child: Column(
@@ -106,6 +111,7 @@ class _AddNoteState extends State<AddNote> {
           ),
           TextButton(
             onPressed: () {
+              Navigator.pop(context, 'Add');
               if (_formKey.currentState!.validate()) {
                 setState(() {
                   title = titleController.text;
